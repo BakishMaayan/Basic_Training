@@ -1,0 +1,58 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  config.vm.define "private_ip" do |lb1|	
+  	config.vm.box = "centos/7"
+  	# Create a private network, which allows host-only access to the machine
+  	# using a specific IP.
+  	config.vm.network "private_network", ip: "10.0.0.3"
+        config.vm.hostname "lb1"
+
+  	# Enable provisioning with a shell script. Additional provisioners such as
+  	# Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  	# documentation for more information about their specific syntax and use.
+   	config.vm.provision "shell", inline: <<-SHELL
+     	yum install -y haproxy
+	systemctl start haproxy
+   	SHELL
+  end
+  config.vm.define "private_ip" do |web1|	
+  	config.vm.box = "centos/7"
+  	# Create a private network, which allows host-only access to the machine
+  	# using a specific IP.
+  	config.vm.network "private_network", ip: "10.0.0.4"
+        config.vm.hostname "web1"
+
+  	# Enable provisioning with a shell script. Additional provisioners such as
+  	# Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  	# documentation for more information about their specific syntax and use.
+   	config.vm.provision "shell", inline: <<-SHELL
+     	yum install -y httpd
+     	systemctl start httpd
+	yum install -y httpd
+	yum start httpd
+   	SHELL
+  end
+  config.vm.define "private_ip" do |web2|	
+  	config.vm.box = "centos/7"
+  	# Create a private network, which allows host-only access to the machine
+  	# using a specific IP.
+  	config.vm.network "private_network", ip: "10.0.0.5"
+        config.vm.hostname "web2"
+
+  	# Enable provisioning with a shell script. Additional provisioners such as
+  	# Puppet, Chef, Ansible, Salt, and Docker are also available. Please see the
+  	# documentation for more information about their specific syntax and use.
+   	config.vm.provision "shell", inline: <<-SHELL
+     	yum install -y httpd
+     	systemctl start httpd
+	yum install -y httpd
+	yum start httpd
+   	SHELL
+  end
+end

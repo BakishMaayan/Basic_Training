@@ -1,0 +1,1 @@
+{"rsync":{"/vagrant":{"type":"rsync","guestpath":"/vagrant","hostpath":"/home/genadipost/Documents/maayan/STEP1/substep1","disabled":false,"__vagrantfile":true,"owner":"vagrant","group":"vagrant"}}}

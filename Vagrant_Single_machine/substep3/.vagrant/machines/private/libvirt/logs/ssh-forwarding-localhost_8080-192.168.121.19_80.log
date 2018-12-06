@@ -1,0 +1,5 @@
+Warning: Permanently added '192.168.121.19' (ECDSA) to the list of known hosts.
+bind: Address already in use
+channel_setup_fwd_listener_tcpip: cannot listen to port: 8080
+Could not request local forwarding.
+packet_write_wait: Connection to 192.168.121.19 port 22: Broken pipe
